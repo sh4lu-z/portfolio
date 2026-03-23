@@ -1,11 +1,23 @@
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
-import {defineConfig, loadEnv} from 'vite';
+import { defineConfig, loadEnv } from 'vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy'; // අලුතින් ඇඩ් කරපු එක
 
-export default defineConfig(({mode}) => {
+export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindcss(),
+      // මේ කොටස තමයි වැදගත්
+      viteStaticCopy({
+        targets: [
+          { src: 'js', dest: '' },      // js folder එක dist/js විදිහට කොපි වෙයි
+          { src: 'css', dest: '' },     // css folder එක dist/css විදිහට කොපි වෙයි
+          { src: 'images', dest: '' },  // images folder එක dist/images විදිහට කොපි වෙයි
+          { src: 'icons', dest: '' }    // icons folder එකත් ඇඩ් කරා
+        ]
+      })
+    ],
     build: {
       rollupOptions: {
         input: {
@@ -23,8 +35,6 @@ export default defineConfig(({mode}) => {
       },
     },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
     },
   };

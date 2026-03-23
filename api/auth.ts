@@ -3,9 +3,12 @@ import jwt from "jsonwebtoken";
 
 export const authRoutes = Router();
 
+
+const MY_ADMIN_SECRET = "sha2008@123";
+
 authRoutes.post("/login", (req, res) => {
   const { adminKey } = req.body;
-  const secret = process.env.ADMIN_SECRET;
+  const secret = MY_ADMIN_SECRET;
 
   if (!secret) {
     return res.status(500).json({ error: "ADMIN_SECRET not configured on server" });
@@ -36,7 +39,7 @@ authRoutes.post("/logout", (req, res) => {
 
 authRoutes.get("/check", (req, res) => {
   const token = req.cookies.admin_token;
-  const secret = process.env.ADMIN_SECRET;
+  const secret = MY_ADMIN_SECRET;
 
   if (!token || !secret) {
     return res.status(401).json({ authenticated: false });
@@ -53,7 +56,7 @@ authRoutes.get("/check", (req, res) => {
 // Middleware to protect routes
 export const requireAdmin = (req: any, res: any, next: any) => {
   const token = req.cookies.admin_token;
-  const secret = process.env.ADMIN_SECRET;
+  const secret = MY_ADMIN_SECRET;
 
   if (!token || !secret) {
     return res.status(401).json({ error: "Unauthorized" });

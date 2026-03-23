@@ -9,39 +9,42 @@ import { authRoutes } from "./api/auth.js";
 
 dotenv.config();
 
-async function startServer() {
-  const app = express();
-  const PORT = 3000;
+const app = express();
+const PORT = 3000;
 
-  // Connect to MongoDB
-  await connectDB();
+// 1. Database එකට Connect වීම 
+connectDB();
 
-  // Middleware
-  app.use(express.json());
-  app.use(cookieParser());
+// 2. Middlewares
+app.use(express.json());
+app.use(cookieParser());
 
-  // API Routes
-  app.use("/api/auth", authRoutes);
-  app.use("/api", apiRoutes);
+// 3. API Routes 
+app.use("/api/auth", authRoutes);
+app.use("/api", apiRoutes);
 
-  // Vite middleware for development
-  if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
+// 4. Vite middleware
+if (process.env.NODE_ENV !== "production") {
+  createViteServer({
+    server: { middlewareMode: true },
+    appType: "spa",
+  }).then((vite) => {
     app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
-    });
-  }
+  });
+} else {
+  // Production සඳහා Static files
+  const distPath = path.join(process.cwd(), 'dist');
+  app.use(express.static(distPath));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
 
+
+if (!process.env.VERCEL) {
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
 }
 
-startServer();
+export default app;

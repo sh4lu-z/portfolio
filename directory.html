@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Directory - Shaluka Gimhan</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -75,7 +75,7 @@
         <header>
             <h1 id="page-title" style="text-transform: capitalize;">Directory</h1>
             <p id="page-desc">Loading content...</p>
-            <p><a href="/" class="back-link">&larr; Back to Home</a></p>
+            <p><a href="./index.html" class="back-link">&larr; Back to Home</a></p>
         </header>
 
         <section id="items-container">
@@ -89,7 +89,7 @@
         </footer>
     </div>
 
-    <script src="/js/darkmode.js"></script>
+    <script src="./js/darkmode.js"></script>
     <script>
         const categoryDescriptions = {
             'project': 'A comprehensive list of my open-source tools, software engineering projects, and security scripts.',
@@ -127,11 +127,11 @@
             pageDesc.textContent = categoryDescriptions[type] || 'Items in this category.';
 
             try {
-                const res = await fetch(`/api/items/${type}`);
+                const res = await fetch(`./api/items/${type}`);
                 const items = await res.json();
 
                 if (items.length === 0) {
-                    container.innerHTML = `<p style="color: #777;">No items found. Add some from the <a href="/admin.html">Admin Dashboard</a>.</p>`;
+                    container.innerHTML = `<p style="color: #777;">No items found. Add some from the <a href="./admin.html">Admin Dashboard</a>.</p>`;
                     return;
                 }
 

@@ -81,7 +81,19 @@ header {
     height: 250px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px;
+    margin-bottom: 10px !important;
+}
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0px; /* නම යට තියෙන ඉඩ අයින් කරන්න */
+    line-height: 1.1;   /* පේළි අතර පරතරය පාලනයට */
+}
+.username {
+    display: block;      /* මේක නිසා username එක යට පේළියට එනවා */
+    font-size: 0.5em;
+    color: #888;
+    font-weight: normal;
+    margin-top: -5px;    /* මේක minus (-) අගයක් දීමෙන් නමට තවත් ලං කරන්න පුළුවන් */
 }
 
 .bio {

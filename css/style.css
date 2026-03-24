@@ -99,7 +99,7 @@ header {
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px 20px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .social-icons .icon {

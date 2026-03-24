@@ -29,14 +29,18 @@ body {
 /* Typography */
 h1 {
     font-size: 2.5rem;
-    margin-bottom: 10px;
     font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 8px; /* නම සහ Username එක අතර පරතරය */
 }
 
 .username {
+    display: block;
     font-size: 0.5em;
     color: #888;
     font-weight: normal;
+    margin-top: 0px;
+    margin-bottom: 15px; /* Username සහ Bio එක අතර පරතරය */
 }
 
 h2 {
@@ -81,20 +85,7 @@ header {
     height: 250px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 10px !important;
-}
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 5px; /* නම යට තියෙන ඉඩ අයින් කරන්න */
-    line-height: 1.2; 
-    margin-bottom: 15px;
-}
-.username {
-    display: block;      /* මේක නිසා username එක යට පේළියට එනවා */
-    font-size: 0.5em;
-    color: #888;
-    font-weight: normal;
-    margin-top: 0px;    /* මේක minus (-) අගයක් දීමෙන් නමට තවත් ලං කරන්න පුළුවන් */
+    margin-bottom: 20px !important; /* ෆොටෝ එක සහ නම අතර පරතරය */
 }
 
 .bio {

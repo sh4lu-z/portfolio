@@ -1,0 +1,6 @@
+import"./darkmode-CuhDVxwA.js";document.addEventListener("DOMContentLoaded",()=>{console.log("Portfolio loaded successfully."),l()});async function l(){const e=document.getElementById("youtube-video-container");if(!e)return;const t=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent("https://www.youtube.com/feeds/videos.xml?channel_id=UCFVwP1p6BiDbKdzFy2On27Q")}`;try{const o=await(await fetch(t)).json();o.status==="ok"&&o.items&&o.items.length>0?(e.innerHTML="",o.items.forEach(n=>{const r=n.thumbnail.replace("hqdefault","mqdefault"),c=`
+                    <a href="${n.link}" class="video-card" target="_blank" rel="noopener noreferrer">
+                        <img src="${r}" alt="${n.title}" loading="lazy">
+                        <p>${n.title}</p>
+                    </a>
+                `;e.insertAdjacentHTML("beforeend",c)}),console.log("YouTube videos loaded successfully!")):(e.innerHTML='<p style="font-size: 0.9rem; color: #777;">No videos found. Please check your Channel ID or connection.</p>',console.warn("YouTube API warning: Status not OK or no items found."))}catch(s){console.error("Error fetching YouTube videos:",s),e.innerHTML='<p style="font-size: 0.9rem; color: #777;">Error loading videos. Try refreshing the page.</p>'}}

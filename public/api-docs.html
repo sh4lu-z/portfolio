@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Docs</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; margin: 0; display: flex; background: #f8f9fa; color: #333; }
+        
+        /* Mobile Header  */
+        .mobile-header { display: none; background: #1e272e; color: white; padding: 15px 20px; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 999; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .menu-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+        .mobile-title { font-size: 18px; margin: 0; font-weight: bold; }
+
+        /* Sidebar Styling */
+        .sidebar { width: 300px; background: #1e272e; color: white; height: 100vh; position: fixed; display: flex; flex-direction: column; z-index: 1000; transition: transform 0.3s ease-in-out; }
+        .sidebar-header { padding: 20px; background: #2f3640; position: relative; }
+        .sidebar-header h2 { margin: 0; font-size: 1.2rem; }
+        .close-btn { display: none; background: none; border: none; color: white; font-size: 20px; cursor: pointer; position: absolute; right: 15px; top: 18px; }
+        
+        .search-box { width: 100%; padding: 10px; margin-top: 15px; border: none; border-radius: 4px; box-sizing: border-box; outline: none; }
+        .nav-links { padding: 20px; overflow-y: auto; flex-grow: 1; }
+        .nav-links a { display: block; color: #d2dae2; text-decoration: none; margin: 8px 0; padding: 8px; border-radius: 4px; font-size: 14px; transition: 0.2s; border-left: 3px solid transparent; }
+        .nav-links a:hover { background: #3c40c6; color: white; border-left: 3px solid #575fcf; }
+        
+        /* Main Content Styling */
+        .main { margin-left: 300px; padding: 40px; width: calc(100% - 300px); box-sizing: border-box; }
+        .api-section { background: white; padding: 30px; margin-bottom: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #eee; scroll-margin-top: 20px; }
+        
+        /* Custom Elements */
+        h2.api-title { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-top: 0; }
+        .endpoint { display: inline-block; background: #2d3436; color: #00d2d3; padding: 8px 15px; border-radius: 5px; font-family: monospace; font-size: 16px; margin-bottom: 15px; word-break: break-all; }
+        .badge { font-weight: bold; padding: 4px 8px; border-radius: 4px; color: white; margin-right: 10px; font-size: 13px; display: inline-block; margin-bottom: 5px;}
+        .get { background: #20bf6b; } .post { background: #f7b731; } .put { background: #3867d6; } .delete { background: #eb3b5a; }
+        
+        pre { background: #f1f2f6; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: monospace; border: 1px solid #dfe4ea; font-size: 14px; }
+        
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; min-width: 500px; }
+        table, th, td { border: 1px solid #dfe4ea; }
+        th, td { padding: 12px; text-align: left; }
+        th { background-color: #f8f9fa; color: #2f3640; }
+
+        /*MOBILE RESPONSIVE CSS*/
+        @media screen and (max-width: 768px) {
+            body { flex-direction: column; }
+            .mobile-header { display: flex; }
+            .sidebar { transform: translateX(-100%); width: 280px; }
+            .sidebar.active { transform: translateX(0); box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
+            .close-btn { display: block; }
+            .main { margin-left: 0; width: 100%; padding: 15px; }
+            .api-section { padding: 20px; scroll-margin-top: 80px; }
+            
+            h1 { font-size: 22px; }
+            h2.api-title { font-size: 18px; }
+            .endpoint { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="mobile-header">
+    <div class="mobile-title">📚 API Docs</div>
+    <button class="menu-btn" id="openMenuBtn">☰</button>
+</div>
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2>📚 API Documentation</h2>
+        <button class="close-btn" id="closeMenuBtn">✖</button>
+        <input type="text" id="searchInput" class="search-box" placeholder="API එක සොයන්න...">
+    </div>
+    <div class="nav-links" id="navLinks">
+        </div>
+</div>
+
+<div class="main">
+    <h1>මගේ ව්‍යාපෘතියේ API ලේඛනය</h1>
+    <p>පහතින් දැක්වෙන්නේ පද්ධතියේ භාවිතා වන සියලුම API ලැයිස්තුවයි.</p>
+
+    <section class="api-section" id="api-health-check" data-title="System Health Check">
+        <h2 class="api-title">System Health Check</h2>
+        <div class="endpoint"><span class="badge get">GET</span> /api/health</div>
+        <p>මෙම API එක භාවිතා කරන්නේ පද්ධතිය ක්‍රියාකාරී තත්ත්වයේ පවතින්නේද යන්න පරීක්ෂා කිරීමට පමණි.</p>
+    </section>
+
+    <section class="api-section" id="api-create-user" data-title="අලුත් පරිශීලකයෙක් සෑදීම">
+        <h2 class="api-title">අලුත් පරිශීලකයෙක් සෑදීම (Create User)</h2>
+        <div class="endpoint"><span class="badge post">POST</span> /api/users/create</div>
+        <p>පද්ධතියට නව පරිශීලකයෙකු ඇතුළත් කිරීම සඳහා මෙම endpoint එක භාවිතා කරයි.</p>
+        <div class="table-container">
+            <table>
+                <tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
+                <tr><td><code>username</code></td><td>String</td><td>Yes</td><td>පරිශීලකයාගේ නම</td></tr>
+            </table>
+        </div>
+        <h3>Request Example</h3>
+        <pre>{ "username": "saman_kumara" }</pre>
+    </section>
+
+
+  
+    </div>
+<script>
+    const sections = document.querySelectorAll('.api-section');
+    const navLinksContainer = document.getElementById('navLinks');
+    const sidebar = document.getElementById('sidebar');
+
+    sections.forEach(section => {
+        const id = section.getAttribute('id');
+        const title = section.getAttribute('data-title');
+        
+        const link = document.createElement('a');
+        link.href = `#${id}`;
+        link.textContent = title;
+        
+        link.addEventListener('click', () => {
+            if(window.innerWidth <= 768) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        navLinksContainer.appendChild(link);
+    });
+
+    document.getElementById('openMenuBtn').addEventListener('click', () => {
+        sidebar.classList.add('active');
+    });
+    
+    document.getElementById('closeMenuBtn').addEventListener('click', () => {
+        sidebar.classList.remove('active');
+    });
+
+    // Search Box Functionality
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('keyup', function() {
+        const filter = searchInput.value.toLowerCase();
+        const links = navLinksContainer.getElementsByTagName('a');
+        
+        for (let i = 0; i < links.length; i++) {
+            const txtValue = links[i].textContent || links[i].innerText;
+            if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                links[i].style.display = "";
+            } else {
+                links[i].style.display = "none";
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

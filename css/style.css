@@ -261,10 +261,17 @@ header {
 }
 
 .timeline-logo {
+    /* පරණ margins ටික ඒ විදිහටම */
     margin-left: 15px;
     margin-right: 15px;
     z-index: 1;
     padding-top: 5px;
+
+    /* ලොගෝ කීයක් තිබ්බත් ගැලපෙන අලුත් logic එක */
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* මැදට ලස්සනට පෙළගැස්වෙන්න */
+    gap: 12px;              /* ලොගෝ දෙකක් අතර තියෙන්න ඕන පරතරය */
 }
 
 .timeline-logo img {
@@ -273,6 +280,9 @@ header {
     border-radius: 8px;
     object-fit: cover;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    
+    /* Image එකේ size එක කිසිම වෙලාවක වෙනස් වෙන්න දෙන්නේ නැහැ */
+    flex-shrink: 0;
 }
 
 .timeline-content {

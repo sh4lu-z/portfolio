@@ -7,7 +7,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         contact: resolve(__dirname, 'contact/index.html'),
-        roadmap: resolve(__dirname, 'roadmap.html') 
+        roadmap: resolve(__dirname, 'roadmap.html'),
+        apidocs: resolve(__dirname, 'api-docs.html') // මෙන්න මේ පේළිය අලුතෙන් එකතු කළා
       }
     }
   }

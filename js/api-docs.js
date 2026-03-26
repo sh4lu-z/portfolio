@@ -6,17 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeBtn = document.getElementById('closeMenuBtn');
     const navLinks = document.querySelectorAll('.nav-links a');
 
-    // Open Menu
     openBtn.addEventListener('click', () => {
         sidebar.classList.add('active');
     });
 
-    // Close Menu
     closeBtn.addEventListener('click', () => {
         sidebar.classList.remove('active');
     });
 
-    // Close menu when a link is clicked on mobile
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (window.innerWidth <= 768) {
@@ -25,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // --- 2. Search Functionality (Now completely fixed!) ---
+    // --- 2. Search Functionality ---
     const searchInput = document.getElementById('searchInput');
     const navLinksContainer = document.getElementById('navLinks');
     
@@ -35,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
         
         for (let i = 0; i < links.length; i++) {
             const txtValue = links[i].textContent || links[i].innerText;
-            // If the text matches the search query, show it, otherwise hide it
             if (txtValue.toLowerCase().indexOf(filter) > -1) {
                 links[i].style.display = "block";
             } else {
@@ -44,33 +40,45 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- 3. Copy Button Logic ---
+    // --- 3. Copy Logic with Base URL Support ---
     const copyButtons = document.querySelectorAll('.copy-btn');
+    const baseUrlInput = document.getElementById('baseUrlInput');
     
+    // Function to format the URL (removes trailing slashes from base URL)
+    const getFullUrl = (endpoint) => {
+        let base = baseUrlInput.value.trim();
+        if(base.endsWith('/')) {
+            base = base.slice(0, -1);
+        }
+        return `${base}${endpoint}`;
+    };
+
     copyButtons.forEach(button => {
         button.addEventListener('click', async function() {
             let textToCopy = "";
 
-            // Determine what to copy based on button class/attributes
-            if (this.hasAttribute('data-copy')) {
-                // It's the endpoint copy button
-                textToCopy = this.getAttribute('data-copy');
-            } else if (this.classList.contains('code-copy')) {
-                // It's the code block copy button
+            // Check if it's an endpoint copy button
+            if (this.classList.contains('endpoint-copy')) {
+                const endpoint = this.getAttribute('data-endpoint');
+                textToCopy = getFullUrl(endpoint);
+            } 
+            // Check if it's the Base URL copy button itself
+            else if (this.id === 'copyBaseBtn') {
+                textToCopy = baseUrlInput.value;
+            }
+            // Check if it's a code block copy button
+            else if (this.classList.contains('code-copy')) {
                 const preElement = this.nextElementSibling;
                 if(preElement) textToCopy = preElement.innerText;
             }
 
             try {
-                // Copy to clipboard
                 await navigator.clipboard.writeText(textToCopy);
                 
-                // Visual feedback
                 const originalHTML = this.innerHTML;
                 this.innerHTML = "Copied!";
                 this.classList.add('copied');
 
-                // Reset after 2 seconds
                 setTimeout(() => {
                     this.innerHTML = originalHTML;
                     this.classList.remove('copied');

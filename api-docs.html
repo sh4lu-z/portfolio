@@ -123,6 +123,75 @@
     </div>
 </section>
 
+<section class="api-card slide-up" id="QRCodeGenerator">
+    <h2 class="api-heading">QR Code Generator API</h2>
+    <p class="api-desc">Generate QR codes dynamically from any text or URL. Returns a Base64 encoded PNG image that can be directly displayed in HTML.</p>
+    
+    <div class="endpoint-block">
+        <div class="endpoint-url">
+            <span class="method badge-post">POST</span>
+            <span class="url-text">https://sh4lu-z-api.vercel.app/api/QR</span>
+        </div>
+        <button class="copy-btn endpoint-copy" data-endpoint="https://sh4lu-z-api.vercel.app/api/QR">
+            Copy
+        </button>
+    </div>
+
+    <h3>Request Body (JSON)</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>text</code></td><td><span class="type-string">String</span></td><td><span class="req-yes">Yes</span></td><td>The text or link you want to encode (e.g., "https://sh4lu-z.vercel.app").</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Response Fields</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>qrCodeUrl</code></td><td><span class="type-string">String</span></td><td>A Base64 encoded data URL of the generated QR code image (starts with <code>data:image/png;base64,...</code>).</td></tr>
+                <tr><td><code>error</code></td><td><span class="type-string">String</span></td><td>Returns the error message if the generation fails.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Error Handling</h3>
+    <p>If the <code>text</code> parameter is missing or empty, the API returns the following error message:</p>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr><th>Condition</th><th>Status Code</th><th>Response Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Missing <code>text</code> parameter</td>
+                    <td>400</td>
+                    <td><code>{"error": "Text එකක් හෝ Link එකක් ලබා දෙන්න!"}</code></td>
+                </tr>
+                <tr>
+                    <td>Server Generation Error</td>
+                    <td>500</td>
+                    <td><code>{"error": "QR Code එක හදන්න බැරි වුණා."}</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Success Response Example</h3>
+    <div class="code-block-wrapper">
+        <button class="copy-btn code-copy">Copy</button>
+<pre><code>{
+  "qrCodeUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAA..."
+}</code></pre>
+    </div>
+</section>
+    
+
   
 </main>
 

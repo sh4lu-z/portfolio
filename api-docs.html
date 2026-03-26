@@ -215,6 +215,103 @@ async function getQR() {
 }</code></pre>
     </div>
 </section>
+<section class="api-card slide-up" id="PasswordChecker">
+    <h2 class="api-heading">1. Password Strength Checker API</h2>
+    <p class="api-desc">Analyze password security using the <code>zxcvbn</code> algorithm. It calculates the strength score and estimates the time required to crack the password against modern supercomputers.</p>
+    
+    <div class="endpoint-block">
+        <div class="endpoint-url">
+            <span class="method badge-post" style="background-color: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;">POST</span>
+            <span class="url-text">https://sh4lu-z-api.vercel.app/api/password/check</span>
+        </div>
+        <button class="copy-btn endpoint-copy" data-endpoint="https://sh4lu-z-api.vercel.app/api/password/check">Copy</button>
+    </div>
+
+    <h3>Request Body (JSON)</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>password</code></td><td><span class="type-string">String</span></td><td><span class="req-yes">Yes</span></td><td>The password string to be analyzed for security.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Response Fields</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>score</code></td><td><span class="type-int">Integer</span></td><td>Strength score from 0 (very weak) to 4 (very strong).</td></tr>
+                <tr><td><code>strength_level</code></td><td><span class="type-string">String</span></td><td>Human-readable strength (Weak, Medium, Strong, Very Strong).</td></tr>
+                <tr><td><code>crack_time_raw</code></td><td><span class="type-string">String</span></td><td>Estimated time to crack (e.g., "centuries", "10 days").</td></tr>
+                <tr><td><code>crack_time_description</code></td><td><span class="type-string">String</span></td><td>Detailed explanation of security against supercomputers.</td></tr>
+                <tr><td><code>color_code</code></td><td><span class="type-string">String</span></td><td>Hex color code representing the security level (Red to Green).</td></tr>
+                <tr><td><code>warning</code></td><td><span class="type-string">String</span></td><td>Specific security warnings if the password is unsafe.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Success Response Example</h3>
+    <div class="code-block-wrapper">
+<pre><code>{
+  "score": 4,
+  "strength_level": "Very Strong",
+  "color_code": "#33cc33",
+  "crack_time_raw": "centuries",
+  "crack_time_description": "Even with a supercomputer testing 10 billion passwords per second...",
+  "warning": "Perfectly secure!"
+}</code></pre>
+    </div>
+</section>
+
+<hr style="margin: 40px 0; border: 0; border-top: 1px solid #eee;">
+
+<section class="api-card slide-up" id="PasswordGenerator">
+    <h2 class="api-heading">2. Secure Password Generator API</h2>
+    <p class="api-desc">Generate high-entropy, military-grade random passwords using Node.js <code>crypto</code> module. These passwords include a mix of uppercase, lowercase, numbers, and symbols with no repeating characters.</p>
+    
+    <div class="endpoint-block">
+        <div class="endpoint-url">
+            <span class="method badge-post" style="background-color: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;">POST</span>
+            <span class="url-text">https://sh4lu-z-api.vercel.app/api/password/generate</span>
+        </div>
+        <button class="copy-btn endpoint-copy" data-endpoint="https://sh4lu-z-api.vercel.app/api/password/generate">Copy</button>
+    </div>
+
+    <h3>Request Body (JSON)</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>length</code></td><td><span class="type-int">Integer</span></td><td><span class="req-no">No</span></td><td>Desired password length (Default: 16, Minimum: 8).</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Response Fields</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>generated_password</code></td><td><span class="type-string">String</span></td><td>The cryptographically secure generated password.</td></tr>
+                <tr><td><code>length</code></td><td><span class="type-int">Integer</span></td><td>The actual length of the generated password.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Success Response Example</h3>
+    <div class="code-block-wrapper">
+<pre><code>{
+  "generated_password": "G.Cyk(rH[g59(R2o",
+  "length": 16
+}</code></pre>
+    </div>
+
+    <h3>Security Note</h3>
+    <p>This API is <strong>Stateless</strong>. We do not store, log, or cache any generated passwords or check requests. Data exists only in memory for the duration of the request.</p>
+</section>
+    
     
 
   

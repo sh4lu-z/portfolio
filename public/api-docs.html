@@ -3,74 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Documentation</title>
-    
-    <link rel="stylesheet" href="/css/api-docs.css">
+    <title>Premium API Documentation</title>
+    <link rel="stylesheet" href="./css/api-docs.css">
 </head>
 <body>
 
 <div class="mobile-header">
-    <div class="mobile-title">📚 API Docs</div>
-    <button class="menu-btn" id="openMenuBtn">☰</button>
+    <div class="mobile-title">🚀 Developer APIs</div>
+    <button class="menu-btn" id="mobileMenuBtn">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
 </div>
 
-<div class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <h2>📚 API Documentation</h2>
+        <h2>🚀 API Docs</h2>
         <button class="close-btn" id="closeMenuBtn">✖</button>
-        <input type="text" id="searchInput" class="search-box" placeholder="Search APIs...">
     </div>
-    <div class="nav-links" id="navLinks">
-        </div>
-</div>
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search endpoints...">
+    </div>
+    <nav class="nav-links" id="navLinks">
+        <a href="#pastpapers-api">PastPapers.wiki Search API</a>
+        <a href="#health-api">System Health Check</a>
+        <a href="#user-api">Create New User</a>
+    </nav>
+</aside>
 
-<div class="main">
-    <h1 class="page-title">📚 API Documentation</h1>
-    <p class="page-subtitle">Below is a list of all the available API endpoints.</p>
+<main class="main-content">
+    <div class="hero-section fade-in">
+        <h1>Developer Documentation</h1>
+        <p>Explore our highly scalable APIs with clear endpoints, request formats, and response examples.</p>
+    </div>
 
-    <section class="api-section fade-in" id="api-pastpapers-wiki" data-title="PastPapers Search API">
-        <h2 class="api-title">PastPapers.wiki Search API</h2>
+    <section class="api-card slide-up" id="pastpapers-api">
+        <h2 class="api-heading">PastPapers.wiki Search API</h2>
+        <p class="api-desc">Search for past papers and marking schemes dynamically from our main database.</p>
         
-        <div class="endpoint-container">
-            <div class="endpoint"><span class="badge get">GET</span> /api/pastpapers.wiki</div>
-            <button class="copy-btn endpoint-copy" data-copy="/api/pastpapers.wiki">Copy</button>
+        <div class="endpoint-block">
+            <div class="endpoint-url">
+                <span class="method badge-get">GET</span>
+                <span class="url-text">/api/pastpapers.wiki</span>
+            </div>
+            <button class="copy-btn" data-copy="/api/pastpapers.wiki">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            </button>
         </div>
-        
-        <p>This endpoint allows you to search for past papers and marking schemes from the PastPapers.wiki database using a search query.</p>
 
-        <h3>Request Parameters</h3>
-        <div class="table-container">
+        <h3>Query Parameters</h3>
+        <div class="table-wrapper">
             <table>
-                <thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
+                <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                 <tbody>
-                    <tr>
-                        <td><code>q</code></td>
-                        <td>String</td>
-                        <td>Yes</td>
-                        <td>The keyword to search for (e.g., "Physics", "2025 AL").</td>
-                    </tr>
+                    <tr><td><code>q</code></td><td><span class="type-string">String</span></td><td><span class="req-yes">Yes</span></td><td>Keyword to search (e.g., "Physics").</td></tr>
                 </tbody>
             </table>
         </div>
 
-        <h3>Success Response Example</h3>
-        <div class="code-container">
+        <h3>Response Example</h3>
+        <div class="code-block-wrapper">
             <button class="copy-btn code-copy">Copy</button>
 <pre><code>{
-  "creator": "Sh4lu Z",
   "status": "success",
   "search_query": "Combine Maths",
-  "results_count": 4,
   "data": [
     {
-      "title": "2025 A/L Combined Maths Marking Scheme",
+      "title": "2025 A/L Combined Maths",
       "pdf_link": "https://example.com/file.pdf"
     }
   ]
@@ -78,45 +76,47 @@
         </div>
     </section>
 
-    <section class="api-section fade-in" id="api-health-check" data-title="System Health Check">
-        <h2 class="api-title">System Health Check</h2>
+    <section class="api-card slide-up" id="health-api">
+        <h2 class="api-heading">System Health Check</h2>
+        <p class="api-desc">Check if the server and database connections are operational.</p>
         
-        <div class="endpoint-container">
-            <div class="endpoint"><span class="badge get">GET</span> /api/health</div>
-            <button class="copy-btn endpoint-copy" data-copy="/api/health">Copy</button>
+        <div class="endpoint-block">
+            <div class="endpoint-url">
+                <span class="method badge-get">GET</span>
+                <span class="url-text">/api/health</span>
+            </div>
+            <button class="copy-btn" data-copy="/api/health">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            </button>
         </div>
-        
-        <p>This endpoint is used exclusively to check if the system is up and running properly.</p>
     </section>
 
-    <section class="api-section fade-in" id="api-create-user" data-title="Create New User">
-        <h2 class="api-title">Create New User</h2>
+    <section class="api-card slide-up" id="user-api">
+        <h2 class="api-heading">Create New User</h2>
+        <p class="api-desc">Register a new user into the platform database.</p>
         
-        <div class="endpoint-container">
-            <div class="endpoint"><span class="badge post">POST</span> /api/users/create</div>
-            <button class="copy-btn endpoint-copy" data-copy="/api/users/create">Copy</button>
+        <div class="endpoint-block">
+            <div class="endpoint-url">
+                <span class="method badge-post">POST</span>
+                <span class="url-text">/api/users/create</span>
+            </div>
+            <button class="copy-btn" data-copy="/api/users/create">
+                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            </button>
         </div>
-        
-        <p>Use this endpoint to register a new user in the system.</p>
-        <div class="table-container">
+
+        <div class="table-wrapper">
             <table>
-                <tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-                <tr><td><code>username</code></td><td>String</td><td>Yes</td><td>The desired username for the new user.</td></tr>
+                <thead><tr><th>Body Element</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td><code>username</code></td><td><span class="type-string">String</span></td><td><span class="req-yes">Yes</span></td><td>The unique name for the user.</td></tr>
+                </tbody>
             </table>
         </div>
-        
-        <h3>Request Example</h3>
-        <div class="code-container">
-            <button class="copy-btn code-copy">Copy</button>
-<pre><code>{ 
-  "username": "saman_kumara" 
-}</code></pre>
-        </div>
     </section>
 
-</div>
+</main>
 
-<script src="/js/api-docs.js"></script>
-
+<script type="module" src="./js/api-docs.js"></script>
 </body>
 </html>

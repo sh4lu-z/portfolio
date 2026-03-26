@@ -40,61 +40,97 @@
     </div>
 
 
+
+
+
+
+
     
-    <section class="api-card slide-up" id="PastPapers.wiki">
-        <h2 class="api-heading">PastPapers.wiki Search API</h2>
-        <p class="api-desc">Search for past papers and marking schemes dynamically from our main database.</p>
-        
-        <div class="endpoint-block">
-            <div class="endpoint-url">
-                <span class="method badge-get">GET</span>
-                <span class="url-text">https://sh4lu-z-api.vercel.app/api/pastpapers.wiki</span>
-            </div>
-            <button class="copy-btn endpoint-copy" data-endpoint="/api/pastpapers.wiki">
-                Copy
-            </button>
+<section class="api-card slide-up" id="PastPapers.wiki">
+    <h2 class="api-heading">PastPapers.wiki Search API</h2>
+    <p class="api-desc">Search for past papers, marking schemes, and educational resources dynamically from the PastPapers.wiki database.</p>
+    
+    <div class="endpoint-block">
+        <div class="endpoint-url">
+            <span class="method badge-get">GET</span>
+            <span class="url-text">https://sh4lu-z-api.vercel.app/api/pastpapers.wiki</span>
         </div>
+        <button class="copy-btn endpoint-copy" data-endpoint="https://sh4lu-z-api.vercel.app/api/pastpapers.wiki">
+            Copy
+        </button>
+    </div>
 
-        <h3>Query Parameters</h3>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-                <tbody>
-                    <tr><td><code>q</code></td><td><span class="type-string">String</span></td><td><span class="req-yes">Yes</span></td><td>Keyword to search (e.g., "Physics").</td></tr>
-                </tbody>
-            </table>
-        </div>
+    <h3>Query Parameters</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>q</code></td><td><span class="type-string">String</span></td><td><span class="req-yes">Yes</span></td><td>Keyword to search (e.g., "Combine Maths", "Physics").</td></tr>
+            </tbody>
+        </table>
+    </div>
 
-        <h3>Response Example</h3>
-        <div class="code-block-wrapper">
-            <button class="copy-btn code-copy">Copy</button>
+    <h3>Response Fields</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>creator</code></td><td><span class="type-string">String</span></td><td>The API developer's name.</td></tr>
+                <tr><td><code>status</code></td><td><span class="type-string">String</span></td><td>Returns "success" if the request is handled properly.</td></tr>
+                <tr><td><code>search_query</code></td><td><span class="type-string">String</span></td><td>The exact query you searched for.</td></tr>
+                <tr><td><code>results_count</code></td><td><span class="type-string">Integer</span></td><td>Total number of items found in the search.</td></tr>
+                <tr><td><code>data</code></td><td><span class="type-string">Array</span></td><td>List of objects containing title, image, pdf_link, and source_page.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Error Handling</h3>
+    <p>If the <code>q</code> parameter is missing or incorrectly formatted, the API returns the following error message:</p>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr><th>Condition</th><th>Status Code</th><th>Response Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Missing <code>q</code> parameter</td>
+                    <td>400 / 200</td>
+                    <td><code>{"error": "?q=maths)"}</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Success Response Example</h3>
+    <div class="code-block-wrapper">
+        <button class="copy-btn code-copy">Copy</button>
 <pre><code>{
+  "creator": "Sh4lu Z",
   "status": "success",
   "search_query": "Combine Maths",
+  "results_count": 4,
   "data": [
     {
-      "title": "2025 A/L Combined Maths",
-      "pdf_link": "https://example.com/file.pdf"
+      "title": "2025 A/L Combined Maths Marking Scheme | Sinhala Medium",
+      "image": "https://pastpapers.wiki/wp-content/uploads/2026/03/2024-AL-Markings-1-350x250.jpg",
+      "pdf_link": "https://pastpapers.wiki/download/39724/2025-a-l-marking/105220/2025-al-combined-maths-marking-sm-past-papers-wiki.pdf",
+      "source_page": "https://pastpapers.wiki/2025-a-l-combined-maths-marking-scheme-sinhala-medium/"
     }
   ]
 }</code></pre>
-        </div>
-    </section>
+    </div>
+</section>
 
-    <section class="api-card slide-up" id="health-api">
-        <h2 class="api-heading">System Health Check</h2>
-        <p class="api-desc">Check if the server and database connections are operational.</p>
-        
-        <div class="endpoint-block">
-            <div class="endpoint-url">
-                <span class="method badge-get">GET</span>
-                <span class="url-text">/api/health</span>
-            </div>
-            <button class="copy-btn endpoint-copy" data-endpoint="/api/health">
-                Copy
-            </button>
-        </div>
-    </section>
+
+
+
+
+
+
+
+    
 
     <section class="api-card slide-up" id="user-api">
         <h2 class="api-heading">Create New User</h2>

@@ -125,7 +125,7 @@
 
 <section class="api-card slide-up" id="QRCodeGenerator">
     <h2 class="api-heading">QR Code Generator API</h2>
-    <p class="api-desc">Generate QR codes dynamically from any text or URL. Returns a Base64 encoded PNG image that can be directly displayed in HTML.</p>
+    <p class="api-desc">Generate QR codes dynamically from any text or URL. Returns a Base64 encoded PNG image that can be directly displayed in any web or mobile application without needing to save the image to a server.</p>
     
     <div class="endpoint-block">
         <div class="endpoint-url">
@@ -142,7 +142,7 @@
         <table>
             <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
             <tbody>
-                <tr><td><code>text</code></td><td><span class="type-string">String</span></td><td><span class="req-yes">Yes</span></td><td>The text or link you want to encode (e.g., "https://sh4lu-z.vercel.app").</td></tr>
+                <tr><td><code>text</code></td><td><span class="type-string">String</span></td><td><span class="req-yes">Yes</span></td><td>The text or link you want to encode into a QR code (e.g., "https://sh4lu-z.vercel.app").</td></tr>
             </tbody>
         </table>
     </div>
@@ -154,14 +154,13 @@
                 <tr><th>Field</th><th>Type</th><th>Description</th></tr>
             </thead>
             <tbody>
-                <tr><td><code>qrCodeUrl</code></td><td><span class="type-string">String</span></td><td>A Base64 encoded data URL of the generated QR code image (starts with <code>data:image/png;base64,...</code>).</td></tr>
-                <tr><td><code>error</code></td><td><span class="type-string">String</span></td><td>Returns the error message if the generation fails.</td></tr>
+                <tr><td><code>qrCodeUrl</code></td><td><span class="type-string">String</span></td><td>A Base64 encoded data URL of the generated QR image.</td></tr>
+                <tr><td><code>error</code></td><td><span class="type-string">String</span></td><td>Returns an error message if the generation fails.</td></tr>
             </tbody>
         </table>
     </div>
 
     <h3>Error Handling</h3>
-    <p>If the <code>text</code> parameter is missing or empty, the API returns the following error message:</p>
     <div class="table-wrapper">
         <table>
             <thead>
@@ -186,7 +185,32 @@
     <div class="code-block-wrapper">
         <button class="copy-btn code-copy">Copy</button>
 <pre><code>{
-  "qrCodeUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAA..."
+  "qrCodeUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAA..."
+}</code></pre>
+    </div>
+
+    <h3>How to Display the QR Code (Integration Guide)</h3>
+    <p>Since the API returns a Base64 data URL, you do not need to download the image. You can directly set this string as the <code>src</code> attribute of an HTML <code>&lt;img&gt;</code> tag.</p>
+    
+    <div class="code-block-wrapper">
+        <button class="copy-btn code-copy">Copy</button>
+<pre><code>// 1. Create an image tag in your HTML:
+// <img id="myQrImage" alt="QR Code">
+
+// 2. Fetch data from the API and display it:
+async function getQR() {
+    const response = await fetch('https://sh4lu-z-api.vercel.app/api/QR', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: "https://sh4lu-z.vercel.app" })
+    });
+
+    const data = await response.json();
+
+    if (data.qrCodeUrl) {
+        // Inject the Base64 string directly into the image source
+        document.getElementById('myQrImage').src = data.qrCodeUrl;
+    }
 }</code></pre>
     </div>
 </section>

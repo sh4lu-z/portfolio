@@ -118,14 +118,22 @@ body {
 /* --- Main Content --- */
 .main-content {
     margin-left: 280px;
-    padding: 50px 60px;
+    padding: 50px 5%; /* Use percentage for dynamic width */
     width: calc(100% - 280px);
     box-sizing: border-box;
-    max-width: 1100px;
 }
+
+/* For very large ultra-wide screens to keep it looking clean */
+@media screen and (min-width: 1500px) {
+    .main-content {
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+}
+
 .hero-section { margin-bottom: 50px; }
 .hero-section h1 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 700; letter-spacing: -0.5px;}
-.hero-section p { color: var(--text-muted); font-size: 1.15rem; max-width: 600px;}
+.hero-section p { color: var(--text-muted); font-size: 1.15rem; max-width: 800px;} /* Keep paragraph readable */
 
 /* Base URL Card */
 .base-url-card {
@@ -134,7 +142,7 @@ body {
     padding: 20px;
     border-radius: 12px;
     margin-top: 30px;
-    max-width: 600px;
+    max-width: 800px;
 }
 .base-url-label { font-size: 0.9rem; font-weight: 600; color: var(--accent); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;}
 .base-url-input-group { display: flex; gap: 10px; margin-bottom: 10px; }
@@ -156,13 +164,15 @@ body {
 /* API Cards */
 .api-card {
     background: var(--bg-card);
-    padding: 35px;
+    padding: 40px;
     border-radius: 16px;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    scroll-margin-top: 30px;
+    scroll-margin-top: 40px;
     transition: all 0.3s ease;
+    width: 100%; /* Make cards take full width available */
+    box-sizing: border-box;
 }
 .api-card:hover {
     transform: translateY(-3px);
@@ -220,7 +230,7 @@ td:last-child { color: var(--text-muted); }
 .req-yes { color: #ef4444; font-size: 0.8rem; border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1); padding: 4px 8px; border-radius: 6px; font-weight: 600;}
 
 /* Code Blocks */
-.code-block-wrapper { position: relative; }
+.code-block-wrapper { position: relative; width: 100%; }
 pre {
     background: #0f172a;
     padding: 25px;
@@ -232,6 +242,8 @@ pre {
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 .code-block-wrapper .copy-btn { position: absolute; top: 12px; right: 12px; padding: 6px 12px; font-size: 0.8rem;}
 
@@ -247,5 +259,5 @@ pre {
     .base-url-input-group button { align-self: flex-start; width: 100%;}
     .endpoint-block { flex-direction: column; align-items: flex-start; padding: 15px;}
     .copy-btn { align-self: stretch; }
-    .api-card { padding: 20px; }
+    .api-card { padding: 20px; margin-bottom: 25px;}
 }

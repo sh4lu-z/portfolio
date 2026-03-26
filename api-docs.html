@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium API Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/api-docs.css">
+</head>
+<body>
 
+<div class="mobile-header">
+    <div class="mobile-title">🚀 Developer APIs</div>
+    <button class="menu-btn" id="mobileMenuBtn">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
+</div>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2>🚀 API Docs</h2>
+        <button class="close-btn" id="closeMenuBtn">✖</button>
+    </div>
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search endpoints...">
+    </div>
+    <nav class="nav-links" id="navLinks">
+        <a href="#pastpapers-api">PastPapers.wiki Search API</a>
+        <a href="#health-api">System Health Check</a>
+        <a href="#user-api">Create New User</a>
+    </nav>
+</aside>
+
+<main class="main-content">
+    <div class="hero-section fade-in">
+        <h1>Developer Documentation</h1>
+        <p>Explore our highly scalable APIs with clear endpoints, request formats, and response examples.</p>
+        
+        <div class="base-url-card">
+            <div class="base-url-label">Main API Base URL</div>
+            <div class="base-url-input-group">
+                <input type="text" id="baseUrlInput" value="https://api.pastpapers.wiki" placeholder="Enter base URL...">
+                <button class="copy-btn" id="copyBaseBtn" title="Copy Base URL">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                </button>
+            </div>
+            <small>Endpoints copied below will automatically include this base URL.</small>
+        </div>
+    </div>
+
+    <section class="api-card slide-up" id="pastpapers-api">
+        <h2 class="api-heading">PastPapers.wiki Search API</h2>
+        <p class="api-desc">Search for past papers and marking schemes dynamically from our main database.</p>
+        
+        <div class="endpoint-block">
+            <div class="endpoint-url">
+                <span class="method badge-get">GET</span>
+                <span class="url-text">/api/pastpapers.wiki</span>
+            </div>
+            <button class="copy-btn endpoint-copy" data-endpoint="/api/pastpapers.wiki">
+                Copy
+            </button>
+        </div>
+
+        <h3>Query Parameters</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td><code>q</code></td><td><span class="type-string">String</span></td><td><span class="req-yes">Yes</span></td><td>Keyword to search (e.g., "Physics").</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Response Example</h3>
+        <div class="code-block-wrapper">
+            <button class="copy-btn code-copy">Copy</button>
+<pre><code>{
+  "status": "success",
+  "search_query": "Combine Maths",
+  "data": [
+    {
+      "title": "2025 A/L Combined Maths",
+      "pdf_link": "https://example.com/file.pdf"
+    }
+  ]
+}</code></pre>
+        </div>
+    </section>
+
+    <section class="api-card slide-up" id="health-api">
+        <h2 class="api-heading">System Health Check</h2>
+        <p class="api-desc">Check if the server and database connections are operational.</p>
+        
+        <div class="endpoint-block">
+            <div class="endpoint-url">
+                <span class="method badge-get">GET</span>
+                <span class="url-text">/api/health</span>
+            </div>
+            <button class="copy-btn endpoint-copy" data-endpoint="/api/health">
+                Copy
+            </button>
+        </div>
+    </section>
+
+    <section class="api-card slide-up" id="user-api">
+        <h2 class="api-heading">Create New User</h2>
+        <p class="api-desc">Register a new user into the platform database.</p>
+        
+        <div class="endpoint-block">
+            <div class="endpoint-url">
+                <span class="method badge-post">POST</span>
+                <span class="url-text">/api/users/create</span>
+            </div>
+            <button class="copy-btn endpoint-copy" data-endpoint="/api/users/create">
+                 Copy
+            </button>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Body Element</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td><code>username</code></td><td><span class="type-string">String</span></td><td><span class="req-yes">Yes</span></td><td>The unique name for the user.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<script type="module" src="/js/api-docs.js"></script>
+</body>
+</html>

@@ -609,3 +609,26 @@ body.dark-mode .dark-mode-btn {
 body.dark-mode .dark-mode-btn:hover {
     color: #fff;
 }
+
+/* Mobile Responsive Fixes for Index Page */
+@media screen and (max-width: 768px) {
+    /* Community Grid එක ෆෝන් එකේදි එක යට එක පෙන්නන්න */
+    .grid-container {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    /* Video Scroller එක නිසා මුළු පිටුවම ලොකු වෙන එක නතර කරලා, ඒ කෑල්ල විතරක් පැත්තට scroll වෙන්න හදන්න */
+    .video-scroller {
+        max-width: 100vw !important;
+        overflow-x: auto !important;
+        white-space: nowrap; 
+    }
+    
+    /* පිටුවෙන් එළියට යන ඕනෑම දෙයක් හැංගිලා යන්න (ආරක්ෂාවට) */
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+}

@@ -416,6 +416,15 @@
     </div>
     <script type="module" src="/js/main.js"></script>
     <script type="module" src="/js/darkmode.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('PWA Setup Successful'))
+        .catch(err => console.log('PWA Setup Failed', err));
+    });
+  }
+</script>
     
 </body>
 </html>

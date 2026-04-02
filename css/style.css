@@ -31,7 +31,7 @@ h1 {
     font-size: 2.5rem;
     font-weight: 600;
     line-height: 1.2;
-    margin-bottom: 8px; /* නම සහ Username එක අතර පරතරය */
+    margin-bottom: 8px; 
 }
 
 .username {
@@ -40,7 +40,7 @@ h1 {
     color: #888;
     font-weight: normal;
     margin-top: 0px;
-    margin-bottom: 15px; /* Username සහ Bio එක අතර පරතරය */
+    margin-bottom: 15px; 
 }
 
 h2 {
@@ -85,7 +85,7 @@ header {
     height: 250px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px !important; /* ෆොටෝ එක සහ නම අතර පරතරය */
+    margin-bottom: 20px !important; 
 }
 
 .bio {
@@ -217,7 +217,7 @@ header {
     text-decoration: underline;
 }
 
-/* Karpathy-style Timeline */
+/*style Timeline */
 .timeline-item {
     display: flex;
     position: relative;
@@ -261,17 +261,17 @@ header {
 }
 
 .timeline-logo {
-    /* පරණ margins ටික ඒ විදිහටම */
+
     margin-left: 15px;
     margin-right: 15px;
     z-index: 1;
     padding-top: 5px;
 
-    /* ලොගෝ කීයක් තිබ්බත් ගැලපෙන අලුත් logic එක */
+
     display: flex;
     flex-direction: column;
-    align-items: center;    /* මැදට ලස්සනට පෙළගැස්වෙන්න */
-    gap: 12px;              /* ලොගෝ දෙකක් අතර තියෙන්න ඕන පරතරය */
+    align-items: center;   
+    gap: 12px;            
 }
 
 .timeline-logo img {
@@ -281,7 +281,7 @@ header {
     object-fit: cover;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     
-    /* Image එකේ size එක කිසිම වෙලාවක වෙනස් වෙන්න දෙන්නේ නැහැ */
+
     flex-shrink: 0;
 }
 
@@ -622,7 +622,7 @@ body.dark-mode .dark-mode-btn:hover {
     /* 1. හැම element එකක්ම තියෙන ඉඩේ ප්‍රමාණයටම හැඩගැහෙන්න */
     * {
         box-sizing: border-box !important;
-        max-width: 100% !important; /* 100vw වෙනුවට 100% දැම්මා */
+        max-width: 100% !important;
     }
 
     /* 2. දිග ලින්ක් හෝ වචන කඩා දැමීම */

@@ -443,6 +443,35 @@ footer {
     .project-text {
         padding-left: 0;
     }
+
+    .timeline-item {
+        flex-direction: column;
+        padding-left: 25px;
+    }
+    
+    .timeline-item::before {
+        left: 5px;
+    }
+    
+    .timeline-year {
+        width: auto;
+        text-align: left;
+        padding-top: 0;
+        margin-bottom: 10px;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    
+    .timeline-dot {
+        left: 1px;
+        top: 6px;
+    }
+    
+    .timeline-logo {
+        flex-direction: row;
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
 }
 
 /* Dark Mode Styles */
